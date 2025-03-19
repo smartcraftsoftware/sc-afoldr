@@ -1,0 +1,35 @@
+{
+  "name": "sc-afoldr",
+  "packageManager": "yarn@4.6.0",
+  "version": "1.0.0",
+  "description": "A simple CLI to scafold a project",
+  "type": "module",
+  "bin": {
+    "scafoldr": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node ./bin/cli.js",
+    "commit": "npx cz",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "execa": "^9.5.2",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^12.4.3",
+    "ora": "^8.2.0",
+    "simple-git": "^3.27.0"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9.22.0",
+    "prettier": "^3.5.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

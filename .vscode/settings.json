@@ -1,0 +1,12 @@
+{
+  "typescript.validate.enable": false,
+  "files.watcherExclude": {
+    "**/src/templates/**": true
+  },
+  "json.schemas": [],
+  "json.validate.enable": false,
+  
+  "files.associations": {
+    "**/src/templates/**/*.*": "plaintext",
+  }
+}
