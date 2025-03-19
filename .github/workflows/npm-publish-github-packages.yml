@@ -21,6 +21,7 @@ jobs:
           node-version: 20
           registry-url: https://npm.pkg.github.com/
           scope: '@smartcraftsoftware'
+      - run: corepack enable
       - run: yarn install --immutable
       - run: npm publish --access public  --registry=https://npm.pkg.github.com/
         env:
