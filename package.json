@@ -1,10 +1,15 @@
 {
   "name": "@smartcraftsoftware/sc-afoldr",
-  "version": "1.0.0",
-  "description": "A simple CLI to scafold a SmartCraft project",
+  "version": "1.0.1",
+  "description": "A CLI tool for SmartCraft frontend teams to scaffold React projects following core team guidelines and structure.",
   "repository": {
     "type": "git",
     "url": "https://github.com/smartcraftsoftware/sc-afoldr.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "SmartCraft Software",
+    "email": "admin.frontendcore@smartcraft.com"
   },
   "type": "module",
   "bin": {
@@ -43,6 +48,6 @@
   },
   "packageManager": "yarn@4.6.0",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://registry.npmjs.org/"
   }
 }
