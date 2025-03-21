@@ -1,17 +1,24 @@
-import chalk from 'chalk'
 import { ExitPromptError } from '../../utils/errors/ExitPromptError.js'
 import runWizard from './wizard.js'
+import { Log } from '../../utils/logUtils.js'
+import instructions from './instructions.js'
+
+const log = new Log()
 
 export default async function createCommand() {
   try {
     const { type, name } = await runWizard()
-    //do something with the type and the name
-    console.log(chalk.blue(`Creating a ${type} named ${name}`))
+
+    log.start(`Creating a ${type} named ${name}`)
+    log.instructions(instructions(type, name))
+
+    process.exit(0)
   } catch (error) {
     if (error.name === ExitPromptError.name) {
-      console.log(chalk.yellow('Prompt was closed by the user. Exiting...'))
+      log.exit()
     } else {
-      console.error(chalk.red('An unexpected error occurred:'), error)
+      log.error(error)
     }
+    process.exit(1)
   }
 }

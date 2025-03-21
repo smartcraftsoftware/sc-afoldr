@@ -1,32 +1,31 @@
-import chalk from 'chalk'
 import { injectProjectSpecifics } from '../../utils/fileUtils.js'
 import runWizard from './wizard.js'
 import { ExitPromptError } from '../../utils/errors/ExitPromptError.js'
 import { cloneTemplate } from './utils.js'
 import instructions from './instructions.js'
+import { Log } from '../../utils/logUtils.js'
+
+const log = new Log()
 
 export default async function initCommand() {
-  console.log(chalk.blue('Welcome to the Scafoldr CLI! 🚀'))
+  log.start('Starting initialization!')
 
   try {
-    // Run the wizard to get user input
     const { template, projectName, projectDescription } = await runWizard()
 
     await cloneTemplate(template, projectName)
-
-    // Inject projectName and projectDescription into specific files
     await injectProjectSpecifics(projectName, projectDescription)
 
-    console.log(chalk.bgGreen.black('Project setup complete! 🎉'))
-
-    console.log(chalk.greenBright(instructions))
+    log.end('Project setup complete! 🎉')
+    log.instructions(instructions)
 
     process.exit(0)
   } catch (error) {
     if (error.name === ExitPromptError.name) {
-      console.log(chalk.yellow('Prompt was closed by the user. Exiting...'))
+      log.exit()
     } else {
-      console.error(chalk.red('An unexpected error occurred:'), error)
+      log.error(error)
     }
+    process.exit(1)
   }
 }
